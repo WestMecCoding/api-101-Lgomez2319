@@ -8,7 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Global Average Temperatures 1880 - 2023</h1>
+    <h1>Hurricane and Tropical Storm Count 2005 - 2015</h1>
     <canvas id="myChart" width="400" height="200"></canvas>
     <script>
         window.addEventListener('load', fetchData);
@@ -18,8 +18,8 @@
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     let data = xhr.responseText;
-                    const globalTemps= processData(data);
-                    renderChart(globalTemps)
+                    const stormCounts= processData(data);
+                    renderChart(stormCounts)
                     // console.log(globalTemps);
                 } else {
                     console.log('Error', xhr.statusText);
@@ -29,18 +29,18 @@
         }
         
         function processData(data) {
-            const years = [];
-            const temps = [];
+            const months = [];
+            const counts = [];
             rows = data.split('\n').slice(1);
             // console.log(rows[0]);
             rows.forEach(row => {
                 const cols = row.split(',');
-                years.push(cols[0]);
-                temps.push(14 + parseFloat(cols[1]));
+                months.push(cols[0]);
+                counts.push(10 + parseFloat(cols[1]));
                 // console.log(cols[0]);
             });
             console.log(data[0]);
-            return{years, temps}
+            return{months, counts}
         }
 
         function renderChart(data) {
@@ -49,11 +49,11 @@
             new Chart(ctx, {
                 type: "line",
                 data: {
-                    labels: data.years,
+                    labels: data.months,
                     datasets: [
                     {
-                        label: "Temperatures in Celsius",
-                        data: data.temps,
+                        label: "Number of Hurricanes and Tropical Storms",
+                        data: data.counts,
                         fill: false,
                         borderWidth: 1,
                         borderColor: 'rgba(255, 199, 132, 1)',
