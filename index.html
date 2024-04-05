@@ -6,6 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XHR and Graph</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Azeret+Mono:ital,wght@0,100..900;1,100..900&family=Cousine:ital,wght@0,400;0,700;1,400;1,700&family=Questrial&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+        h1 {
+            color: rgb(103, 55, 193);
+            font-family: "Cousine", monospace;
+        }
+    </style>
 </head>
 <body>
     <h1>Hurricane and Tropical Storm Count 2005 - 2015</h1>
@@ -36,7 +43,7 @@
             rows.forEach(row => {
                 const cols = row.split(',');
                 months.push(cols[0]);
-                counts.push(10 + parseFloat(cols[1]));
+                counts.push(parseFloat(cols[1]));
                 // console.log(cols[0]);
             });
             console.log(data[0]);
@@ -52,12 +59,12 @@
                     labels: data.months,
                     datasets: [
                     {
-                        label: "Number of Hurricanes and Tropical Storms",
+                        label: "Average Number of Hurricanes and Tropical Storms",
                         data: data.counts,
                         fill: false,
-                        borderWidth: 1,
-                        borderColor: 'rgba(255, 199, 132, 1)',
-                        backgroundColor: 'rgba(255, 99, 132, 0.5)'
+                        borderWidth: 2,
+                        borderColor: 'rgba(189, 46, 239, 1)',
+                        backgroundColor: 'rgba(0, 246, 255)'
                     }
                     ]
                 },
