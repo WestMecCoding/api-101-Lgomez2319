@@ -12,13 +12,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/csv-data', (req, res) => {
-    const csvPath = path.join(__dirname, '..', 'data', 'hurricanes.csv');
+    const csvPath = path.join(__dirname, '..', 'data', 'hurricane.csv');
     fs.readFile(csvPath, 'utf8', (err, data) => {
         if (err) {
             console.error(err);
             return
         }
         res.type('text/plain');
+        console.log(data)
         res.send(data);
     });
 
